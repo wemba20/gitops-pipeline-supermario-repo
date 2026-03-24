@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  VERSION: $(( $(cat version.txt) + 1 ))      
-
 jobs:
 
   run_container_image_scan_on_supermario_docker_image:
@@ -16,6 +13,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Set version
+        run: |
+          VERSION=$(($(cat version.txt)+1))
+          echo "VERSION=$VERSION" >> $GITHUB_ENV  
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
