@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: supermariogame-container
-          image: adewemba1917/supermariogitopsproject:2
+          image: adewemba1917/supermariogitopsproject:3
           ports:
             - containerPort: 8080
           resources:
